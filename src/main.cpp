@@ -1418,7 +1418,7 @@ int64_t GetProofOfStakeReward(int nHeight, int64_t nCoinAge, int64_t nFees)
     if(TestNet()) return 2000 * COIN;
     //////////////////////////////////
 
-    int64_t nReward = GetProofOfWorkReward(int nHeight, int64_t nFees);
+    int64_t nReward = GetProofOfWorkReward(nHeight, nFees);
     int64_t nSubsidy = STATIC_POS_REWARD;
 
     if(nHeight < 100001)
