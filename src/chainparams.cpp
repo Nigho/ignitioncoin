@@ -71,7 +71,7 @@ public:
 		// Build the genesis block. Note that the output of the genesis coinbase cannot
 		// be spent as it did not originally exist in the database.
 
-		const char* pszTimestamp = "Here 18 Dec 2017 we start the Ignition";
+		const char* pszTimestamp = "Here 18 Dec 2017 we start the Brewhaust";
 		std::vector<CTxIn> vin;
 		vin.resize(1);
 		vin[0].scriptSig = CScript() << 0 << CBigNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
@@ -102,10 +102,10 @@ public:
 		base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x88)(0x06)(0x2D).convert_to_container<std::vector<unsigned char> >();
 		base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
 
-		vSeeds.push_back(CDNSSeedData("america", "america.ignitioncoin.org"));
-		vSeeds.push_back(CDNSSeedData("europ", "europ.ignitioncoin.org"));
-		vSeeds.push_back(CDNSSeedData("asia",  "asia.ignitioncoin.org"));
-		vSeeds.push_back(CDNSSeedData("explorer",  "explorer.ignitioncoin.org"));
+		vSeeds.push_back(CDNSSeedData("america", "america.brewhaustcoin.org"));
+		vSeeds.push_back(CDNSSeedData("europ", "europ.brewhaustcoin.org"));
+		vSeeds.push_back(CDNSSeedData("asia",  "asia.brewhaustcoin.org"));
+		vSeeds.push_back(CDNSSeedData("explorer",  "explorer.brewhaustcoin.org"));
 		convertSeeds(vFixedSeeds, pnSeed, ARRAYLEN(pnSeed), nDefaultPort);
 
 		nPoolMaxTransactions = 3;

@@ -66,13 +66,13 @@ void OptionsModel::Init()
     if (!settings.contains("nDarksendRounds"))
         settings.setValue("nDarksendRounds", 2);
     nDarksendRounds = settings.value("nDarksendRounds").toLongLong();
-    if (!settings.contains("nAnonymizeIgnitionAmount"))
-        settings.setValue("nAnonymizeIgnitionAmount", 1000);
-    nAnonymizeIgnitionAmount = settings.value("nAnonymizeIgnitionAmount").toLongLong();
+    if (!settings.contains("nAnonymizeBrewhaustAmount"))
+        settings.setValue("nAnonymizeBrewhaustAmount", 1000);
+    nAnonymizeBrewhaustAmount = settings.value("nAnonymizeBrewhaustAmount").toLongLong();
     if (settings.contains("nDarksendRounds"))
         SoftSetArg("-darksendrounds", settings.value("nDarksendRounds").toString().toStdString());
-    if (settings.contains("nAnonymizeIgnitionAmount"))
-        SoftSetArg("-anonymizetraveamount", settings.value("nAnonymizeIgnitionAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeBrewhaustAmount"))
+        SoftSetArg("-anonymizetraveamount", settings.value("nAnonymizeBrewhaustAmount").toString().toStdString());
 
 
 
@@ -206,8 +206,8 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return fCoinControlFeatures;
         case DarksendRounds:
             return QVariant(nDarksendRounds);
-        case AnonymizeIgnitionAmount:
-            return QVariant(nAnonymizeIgnitionAmount);
+        case AnonymizeBrewhaustAmount:
+            return QVariant(nAnonymizeBrewhaustAmount);
         case UseBlackTheme:
             return QVariant(fUseBlackTheme);
         default:
@@ -318,10 +318,10 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
             settings.setValue("nDarksendRounds", nDarksendRounds);
             emit darksendRoundsChanged(nDarksendRounds);
             break;
-        case AnonymizeIgnitionAmount:
-            nAnonymizeIgnitionAmount = value.toInt();
-            settings.setValue("nAnonymizeIgnitionAmount", nAnonymizeIgnitionAmount);
-            emit AnonymizeIgnitionAmountChanged(nAnonymizeIgnitionAmount);
+        case AnonymizeBrewhaustAmount:
+            nAnonymizeBrewhaustAmount = value.toInt();
+            settings.setValue("nAnonymizeBrewhaustAmount", nAnonymizeBrewhaustAmount);
+            emit AnonymizeBrewhaustAmountChanged(nAnonymizeBrewhaustAmount);
             break;
         default:
             break;

@@ -914,7 +914,7 @@ void tradingDialog::on_GenDepositBTN_clicked()
 
 void tradingDialog::on_Sell_Max_Amount_clicked()
 {
-    //calculate amount of BTC that can be gained from selling IC available balance
+    //calculate amount of BTC that can be gained from selling BRE available balance
     QString responseA = GetBalance("IC");
     QString str;
     QJsonObject ResultObject =  GetResultObjectFromJSONObject(responseA);
@@ -1144,7 +1144,7 @@ void tradingDialog::on_SellHMBTN_clicked()
 
     QString Msg = "Are you sure you want to Sell ";
             Msg += ui->UnitsInputHM->text();
-            Msg += " IC @ ";
+            Msg += " BRE @ ";
             Msg += ui->SellBidPriceEdit->text();
             Msg += " BTC Each";
 
@@ -1270,10 +1270,10 @@ void tradingDialog::on_CSUnitsBtn_clicked()
                         if (ResponseObject["success"].toBool() == false){
                             QMessageBox::information(this,"Failed",ResponseObject["message"].toString());
                         } else if (ResponseObject["success"].toBool() == true){
-                            QMessageBox::information(this,"Success","<center>Cross-Send Successful</center>\n Sold "+Astr.number(Qty,'i',4)+" IC for "+Qstr.number((ui->CSUnitsInput->text().toDouble()-0.0002),'i',8)+" BTC");
+                            QMessageBox::information(this,"Success","<center>Cross-Send Successful</center>\n Sold "+Astr.number(Qty,'i',4)+" BRE for "+Qstr.number((ui->CSUnitsInput->text().toDouble()-0.0002),'i',8)+" BTC");
                         }
                     } else if (ResponseObject["success"].toBool() == true){
-                        QMessageBox::information(this,"Success","<center>Cross-Send Successful</center>\n Sold "+Astr.number(Qty,'i',4)+" IC for "+Qstr.number((ui->CSUnitsInput->text().toDouble()-0.0002),'i',8)+" BTC");
+                        QMessageBox::information(this,"Success","<center>Cross-Send Successful</center>\n Sold "+Astr.number(Qty,'i',4)+" BRE for "+Qstr.number((ui->CSUnitsInput->text().toDouble()-0.0002),'i',8)+" BTC");
                     }
                 }
                 break;
@@ -1288,7 +1288,7 @@ void tradingDialog::on_WithdrawUnitsBtn_clicked()
     QString Coin = "IC";
     QString Msg = "Are you sure you want to Withdraw ";
             Msg += Qstr.number((Quantity - 0.02),'i',8);
-            Msg += " IC to ";
+            Msg += " BRE to ";
             Msg += ui->WithdrawAddress->text();
             Msg += " ?";
 

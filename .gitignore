@@ -2,9 +2,9 @@
 compile-blk.sh
 .DS_Store
 bin/
-ignition.pro
-ignitiond
-Ignition-qt
+brewhaust.pro
+brewhaustd
+Brewhaust-qt
 qrc_bitcoin\.cpp
 build/
 *.qm

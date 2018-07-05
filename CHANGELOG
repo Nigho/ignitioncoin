@@ -23,8 +23,8 @@ Masternodes are no longer capable of setting an external reward address
 
 v1.0.0.3
 --------
-Ignitiond binary will now compile out to ignitiond (lower case)
-Unlock Bugs Fixed - For issue https://github.com/ignitioncoin/ignitioncoin/issues/10
+Brewhaustd binary will now compile out to brewhaustd (lower case)
+Unlock Bugs Fixed - For issue https://github.com/brewhaustcoin/brewhaustcoin/issues/10
 GitIgnore ignores more files
 Fixed bug with a help response repeating itself
 Removing depricated "masternode winners" command
@@ -47,9 +47,9 @@ Anti-Virus False Positive Fix
 
 v1.0.0a
 -------
-Initial Ignition Release
+Initial Brewhaust Release
 
->>>>>>Forked to Ignition Coin
+>>>>>>Forked to Brewhaust Coin
 
 v2.0.3.2
 --------

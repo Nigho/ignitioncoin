@@ -7,11 +7,11 @@ software written by Eric Young (eay@cryptsoft.com) and UPnP software written by
 Thomas Bernard.
 
 
-MacOS Ignitiond BUILD NOTES
+MacOS Brewhaustd BUILD NOTES
 ===========================
 
 
-See readme-qt.rst for instructions on building Ignition QT, the
+See readme-qt.rst for instructions on building Brewhaust QT, the
 graphical user interface.
 
 Tested on MacOS High Sierra 10.13.2 - Darwin Kernel Version 17.3.0.  PPC is not supported because it's big-endian.
@@ -26,7 +26,7 @@ but you can get the current version from http://developer.apple.com
 
 1.  Clone the github tree to get the source code:
 
-git clone https://github.com/ignitioncoin/ignitioncoin
+git clone https://github.com/brewhaustcoin/brewhaustcoin
 
 2.  Install XCode and it's command line tools
 
@@ -39,14 +39,14 @@ brew install qt autoconf automake libtool boost@1.59 berkeley-db@4 openssl miniu
 Optionally install qrencode (and set USE_QRCODE=1):
 brew install qrencode
 
-4.  Now you should be able to build Ignitiond:
+4.  Now you should be able to build Brewhaustd:
 
-cd Ignition/src
+cd Brewhaust/src
 make -f makefile.osx
 
 Run:
-  ./Ignitiond --help  # for a list of command-line options.
+  ./Brewhaustd --help  # for a list of command-line options.
 Run
-  ./Ignitiond -daemon # to start the Ignition daemon.
+  ./Brewhaustd -daemon # to start the Brewhaust daemon.
 Run
-  ./Ignitiond help # When the daemon is running, to get a list of RPC commands
+  ./Brewhaustd help # When the daemon is running, to get a list of RPC commands

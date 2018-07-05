@@ -157,7 +157,7 @@ bool CWallet::LoadCScript(const CScript& redeemScript)
      * these. Do not add them to the wallet and warn. */
     if (redeemScript.size() > MAX_SCRIPT_ELEMENT_SIZE)
     {
-        std::string strAddr = CIgnitioncoinAddress(redeemScript.GetID()).ToString();
+        std::string strAddr = CBrewhaustcoinAddress(redeemScript.GetID()).ToString();
         LogPrintf("%s: Warning: This wallet contains a redeemScript of size %u which exceeds maximum size %i thus can never be redeemed. Do not use address %s.\n",
             __func__, redeemScript.size(), MAX_SCRIPT_ELEMENT_SIZE, strAddr);
         return true;
@@ -1253,7 +1253,7 @@ void CWallet::ReacceptWalletTransactions()
                 }
                 if (fUpdated)
                 {
-                    LogPrintf("ReacceptWalletTransactions found spent coin %s IC %s\n", FormatMoney(wtx.GetCredit(ISMINE_ALL)), wtx.GetHash().ToString());
+                    LogPrintf("ReacceptWalletTransactions found spent coin %s BRE %s\n", FormatMoney(wtx.GetCredit(ISMINE_ALL)), wtx.GetHash().ToString());
                     wtx.MarkDirty();
                     wtx.WriteToDisk();
                 }
@@ -2469,7 +2469,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64_t> >& vecSend, 
                 {
                     // Fill a vout to ourself
                     // TODO: pass in scriptChange instead of reservekey so
-                    // change transaction isn't always pay-to-Ignition-address
+                    // change transaction isn't always pay-to-Brewhaust-address
                     CScript scriptChange;
 
                     // coin control: send change to custom address
@@ -2748,7 +2748,7 @@ bool CWallet::UnlockStealthAddresses(const CKeyingMaterial& vMasterKeyIn)
             continue;
 
         CKeyID ckid = pubKey.GetID();
-        CIgnitioncoinAddress addr(ckid);
+        CBrewhaustcoinAddress addr(ckid);
 
         StealthKeyMetaMap::iterator mi = mapStealthKeyMeta.find(ckid);
         if (mi == mapStealthKeyMeta.end())
@@ -2836,7 +2836,7 @@ bool CWallet::UnlockStealthAddresses(const CKeyingMaterial& vMasterKeyIn)
         if (fDebug)
         {
             CKeyID keyID = cpkT.GetID();
-            CIgnitioncoinAddress coinAddress(keyID);
+            CBrewhaustcoinAddress coinAddress(keyID);
             printf("Adding secret to key %s.\n", coinAddress.ToString().c_str());
         };
 
@@ -3036,7 +3036,7 @@ bool CWallet::SendStealthMoneyToDestination(CStealthAddress& sxAddress, int64_t 
 
     CKeyID ckidTo = cpkTo.GetID();
 
-    CIgnitioncoinAddress addrTo(ckidTo);
+    CBrewhaustcoinAddress addrTo(ckidTo);
 
     if (SecretToPublicKey(ephem_secret, ephem_pubkey) != 0)
     {
@@ -3202,7 +3202,7 @@ bool CWallet::FindStealthTransactions(const CTransaction& tx, mapValue_t& mapNar
                     std::vector<uint8_t> vchEmpty;
                     AddCryptedKey(cpkE, vchEmpty);
                     CKeyID keyId = cpkE.GetID();
-                    CIgnitioncoinAddress coinAddress(keyId);
+                    CBrewhaustcoinAddress coinAddress(keyId);
                     std::string sLabel = it->Encoded();
                     SetAddressBookName(keyId, sLabel);
 
@@ -3265,7 +3265,7 @@ bool CWallet::FindStealthTransactions(const CTransaction& tx, mapValue_t& mapNar
                     CKeyID keyID = cpkT.GetID();
                     if (fDebug)
                     {
-                        CIgnitioncoinAddress coinAddress(keyID);
+                        CBrewhaustcoinAddress coinAddress(keyID);
                         printf("Adding key %s.\n", coinAddress.ToString().c_str());
                     };
 
@@ -3548,7 +3548,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
                     pubkeyWork.SetDestination(winningNode->pubkey.GetID());
                     CTxDestination address1;
                     ExtractDestination(pubkeyWork, address1);
-                    CIgnitioncoinAddress address2(address1);
+                    CBrewhaustcoinAddress address2(address1);
                     std::string strAddr = address2.ToString();
                     uint256 hash4;
                     SHA256((unsigned char*)strAddr.c_str(), strAddr.length(), (unsigned char*)&hash4);
@@ -3595,7 +3595,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 
             CTxDestination address1;
             ExtractDestination(payee, address1);
-            CIgnitioncoinAddress address2(address1);
+            CBrewhaustcoinAddress address2(address1);
 
             LogPrintf("Masternode payment to %s\n", address2.ToString().c_str());
         }
@@ -3610,7 +3610,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 
             CTxDestination address1;
             ExtractDestination(payeerewardaddress, address1);
-            CIgnitioncoinAddress address2(address1);
+            CBrewhaustcoinAddress address2(address1);
 
             LogPrintf("Masternode payment to %s\n", address2.ToString().c_str());
         }
@@ -3628,11 +3628,11 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 
             CTxDestination address1;
             ExtractDestination(payee, address1);
-            CIgnitioncoinAddress address2(address1);
+            CBrewhaustcoinAddress address2(address1);
 
             CTxDestination address3;
             ExtractDestination(payeerewardaddress, address3);
-            CIgnitioncoinAddress address4(address3);
+            CBrewhaustcoinAddress address4(address3);
 
             LogPrintf("Masternode payment to %s\n", address2.ToString().c_str());
         }
@@ -3675,7 +3675,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
         txNew.vout[payments-1].nValue = 0;
         CTxDestination address1;
         ExtractDestination(payee, address1);
-        CIgnitioncoinAddress address2(address1);
+        CBrewhaustcoinAddress address2(address1);
         LogPrintf("Masternode payment to %s\n", address2.ToString().c_str());
 
         // Set output amount
@@ -4021,7 +4021,7 @@ bool CWallet::SetAddressBookName(const CTxDestination& address, const string& st
                              (fUpdated ? CT_UPDATED : CT_NEW) );
     if (!fFileBacked)
         return false;
-    return CWalletDB(strWalletFile).WriteName(CIgnitioncoinAddress(address).ToString(), strName);
+    return CWalletDB(strWalletFile).WriteName(CBrewhaustcoinAddress(address).ToString(), strName);
 }
 
 bool CWallet::DelAddressBookName(const CTxDestination& address)
@@ -4036,8 +4036,8 @@ bool CWallet::DelAddressBookName(const CTxDestination& address)
 
     if (!fFileBacked)
         return false;
-    CWalletDB(strWalletFile).EraseName(CIgnitioncoinAddress(address).ToString());
-    return CWalletDB(strWalletFile).EraseName(CIgnitioncoinAddress(address).ToString());
+    CWalletDB(strWalletFile).EraseName(CBrewhaustcoinAddress(address).ToString());
+    return CWalletDB(strWalletFile).EraseName(CBrewhaustcoinAddress(address).ToString());
 }
 
 bool CWallet::GetTransaction(const uint256 &hashTx, CWalletTx& wtx)
@@ -4392,7 +4392,7 @@ void CWallet::FixSpentCoins(int& nMismatchFound, int64_t& nBalanceInQuestion, bo
         {
             if (IsMine(pcoin->vout[n]) && pcoin->IsSpent(n) && (txindex.vSpent.size() <= n || txindex.vSpent[n].IsNull()))
             {
-                LogPrintf("FixSpentCoins found lost coin %s IC %s[%d], %s\n",
+                LogPrintf("FixSpentCoins found lost coin %s BRE %s[%d], %s\n",
                     FormatMoney(pcoin->vout[n].nValue), pcoin->GetHash().ToString(), n, fCheckOnly? "repair not attempted" : "repairing");
                 nMismatchFound++;
                 nBalanceInQuestion += pcoin->vout[n].nValue;
@@ -4404,7 +4404,7 @@ void CWallet::FixSpentCoins(int& nMismatchFound, int64_t& nBalanceInQuestion, bo
             }
             else if (IsMine(pcoin->vout[n]) && !pcoin->IsSpent(n) && (txindex.vSpent.size() > n && !txindex.vSpent[n].IsNull()))
             {
-                LogPrintf("FixSpentCoins found spent coin %s IC %s[%d], %s\n",
+                LogPrintf("FixSpentCoins found spent coin %s BRE %s[%d], %s\n",
                     FormatMoney(pcoin->vout[n].nValue), pcoin->GetHash().ToString(), n, fCheckOnly? "repair not attempted" : "repairing");
                 nMismatchFound++;
                 nBalanceInQuestion += pcoin->vout[n].nValue;

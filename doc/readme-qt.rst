@@ -1,4 +1,4 @@
-Ignition-qt: Qt5 GUI for Ignition
+Brewhaust-qt: Qt5 GUI for Brewhaust
 ===============================
 
 Build instructions
@@ -24,9 +24,9 @@ then execute the following:
     qmake
     make
 
-Alternatively, install Qt Creator and open the `Ignition-qt.pro` file.
+Alternatively, install Qt Creator and open the `Brewhaust-qt.pro` file.
 
-An executable named `Ignition-qt` will be built.
+An executable named `Brewhaust-qt` will be built.
 
 
 Windows
@@ -62,8 +62,8 @@ Mac OS X
 
 It is recommended to build from CLI
 ::    
-    cd ignitioncoin
-    /usr/local/Cellar/qt/5.9.1/bin/qmake USE_UPNP=1 Ignition.pro
+    cd brewhaustcoin
+    /usr/local/Cellar/qt/5.9.1/bin/qmake USE_UPNP=1 Brewhaust.pro
     make
 
 .. _`Homebrew`: https://brew.sh/
@@ -75,7 +75,7 @@ Build configuration options
 UPNnP port forwarding
 ---------------------
 
-To use UPnP for port forwarding behind a NAT router (recommended, as more connections overall allow for a faster and more stable Ignition experience), pass the following argument to qmake:
+To use UPnP for port forwarding behind a NAT router (recommended, as more connections overall allow for a faster and more stable Brewhaust experience), pass the following argument to qmake:
 
 ::
 
@@ -123,9 +123,9 @@ flag to qmake to control this:
 Berkely DB version warning
 ==========================
 
-A warning for people using the *static binary* version of Ignition on a Linux/UNIX-ish system (tl;dr: **Berkely DB databases are not forward compatible**).
+A warning for people using the *static binary* version of Brewhaust on a Linux/UNIX-ish system (tl;dr: **Berkely DB databases are not forward compatible**).
 
-The static binary version of Ignition is linked against libdb 5.0 (see also `this Debian issue`_).
+The static binary version of Brewhaust is linked against libdb 5.0 (see also `this Debian issue`_).
 
 Now the nasty thing is that databases from 5.X are not compatible with 4.X.
 
@@ -140,7 +140,7 @@ Ubuntu 11.10 warning
 ====================
 
 Ubuntu 11.10 has a package called 'qt-at-spi' installed by default.  At the time of writing, having that package
-installed causes Ignition-qt to crash intermittently.  The issue has been reported as `launchpad bug 857790`_, but
+installed causes Brewhaust-qt to crash intermittently.  The issue has been reported as `launchpad bug 857790`_, but
 isn't yet fixed.
 
 Until the bug is fixed, you can remove the qt-at-spi package to work around the problem, though this will presumably

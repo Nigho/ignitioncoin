@@ -112,7 +112,7 @@ ifeq (${USE_WALLET}, 1)
         obj/walletdb.o
 endif
 
-all: Ignitiond
+all: Brewhaustd
 
 LIBS += $(CURDIR)/leveldb/libleveldb.a $(CURDIR)/leveldb/libmemenv.a
 DEFS += $(addprefix -I,$(CURDIR)/leveldb/include)
@@ -138,11 +138,11 @@ obj/neoscrypt.o: neoscrypt.c
 obj/neoscrypt_asm.o: neoscrypt_asm.S
 	$(CC) -c -DSHA256 -DASM -DOPT -o $@ $^
 
-Ignitiond: $(OBJS:obj/%=obj/%)
+Brewhaustd: $(OBJS:obj/%=obj/%)
 	$(LINK) $(xCXXFLAGS) -o $@ $^ $(xLDFLAGS) $(LIBS)
 
 clean:
-	-rm -f Ignitiond
+	-rm -f Brewhaustd
 	-rm -f obj/*.o
 	-rm -f obj/*.P
 	-rm -f obj/build.h

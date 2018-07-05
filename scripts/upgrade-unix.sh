@@ -18,12 +18,12 @@ readYesNo()
 
 # Options
 SOURCES_PATH_DEFAULT=$HOME
-SOURCES_PATH="$SOURCES_PATH_DEFAULT/ignitioncoin"
-BACKUP_PATH_DEFAULT=$HOME/ignitionbackup
+SOURCES_PATH="$SOURCES_PATH_DEFAULT/brewhaustcoin"
+BACKUP_PATH_DEFAULT=$HOME/brewhaustbackup
 BACKUP_PATH=$BACKUP_PATH_DEFAULT
-REPO="https://github.com/ignitioncoin/ignitioncoin"
+REPO="https://github.com/brewhaustcoin/brewhaustcoin"
 BRANCH="master"
-SWAP_FILE="$HOME/ignitioncoin-swap"
+SWAP_FILE="$HOME/brewhaustcoin-swap"
 
 # Useful variables
 RED='\033[0;31m'
@@ -51,12 +51,12 @@ if [ -d "../.git" ]; then
 	echo -e "\n${GREEN}Script executed from the repository${NC}"
 	SOURCES_PATH="$(dirname "$(pwd)")"
 	# Delete previous binary
-	if [ -f "$SOURCES_PATH/bin/ignitiond" ]; then
-		rm -f $SOURCES_PATH/bin/ignitiond
+	if [ -f "$SOURCES_PATH/bin/brewhaustd" ]; then
+		rm -f $SOURCES_PATH/bin/brewhaustd
 		echo -e "${BLUE}Removed old binary in $SOURCES_PATH/bin/${NC}"
 	fi
-	if [ -f "../bin/ignitiond" ]; then
-      rm ../bin/ignitiond
+	if [ -f "../bin/brewhaustd" ]; then
+      rm ../bin/brewhaustd
       echo "Removed old binary in ../bin/"
     fi
 else
@@ -65,7 +65,7 @@ else
 
 	# Ask for the install path
 	read -e -p "${BLUE_READ}Install to directory [$SOURCES_PATH_DEFAULT]: ${NC_READ}" SOURCES_PATH
-	SOURCES_PATH="${SOURCES_PATH:-$SOURCES_PATH_DEFAULT}/ignitioncoin"
+	SOURCES_PATH="${SOURCES_PATH:-$SOURCES_PATH_DEFAULT}/brewhaustcoin"
 	# Replace ~ with $HOME if needed
 	SOURCES_PATH="${SOURCES_PATH/[~]/$HOME}"
 
@@ -87,10 +87,10 @@ fi
 
 # Kill and remove existing daemons
 echo -e "\n${GREEN}Removing existing daemons${NC}"
-sudo killall -9 ignitiond
-if [ -f "/usr/local/bin/ignitiond" ]; then
-  sudo rm -f /usr/local/bin/ignitiond
-  echo -e "${BLUE}Removed ignitiond in /usr/local/bin/ - To be replaced with new version${NC}"
+sudo killall -9 brewhaustd
+if [ -f "/usr/local/bin/brewhaustd" ]; then
+  sudo rm -f /usr/local/bin/brewhaustd
+  echo -e "${BLUE}Removed brewhaustd in /usr/local/bin/ - To be replaced with new version${NC}"
 fi
 
 # Go to the scripts directory
@@ -121,8 +121,8 @@ echo -e "\n${GREEN}Building daemon${NC}"
 cd $SOURCES_PATH/src
 make -j$NB_CORES -f makefile.unix
 
-if [ ! -f $SOURCES_PATH/bin/ignitiond ]; then
-	echo -e "\n${RED}ERROR: ignitiond binary could not be created${NC}"
+if [ ! -f $SOURCES_PATH/bin/brewhaustd ]; then
+	echo -e "\n${RED}ERROR: brewhaustd binary could not be created${NC}"
 	exit -2
 fi
 
@@ -144,12 +144,12 @@ fi
 
 # Install
 echo -e "\n${GREEN}Installing daemon in /usr/local/bin/${NC}"
-sudo cp $SOURCES_PATH/bin/ignitiond /usr/local/bin/
-sudo strip /usr/local/bin/ignitiond
+sudo cp $SOURCES_PATH/bin/brewhaustd /usr/local/bin/
+sudo strip /usr/local/bin/brewhaustd
 
 # Backup data dir
-if [ -d "$HOME/.Ignition/" ]; then
-	echo -e "\n${GREEN}Backing up ~/Ignition (including wallet.dat)${NC}"
+if [ -d "$HOME/.Brewhaust/" ]; then
+	echo -e "\n${GREEN}Backing up ~/Brewhaust (including wallet.dat)${NC}"
 
 	# Ask for the install path
 	read -e -p "${BLUE_READ}Backup directory [$BACKUP_PATH_DEFAULT]: ${NC_READ}" BACKUP_PATH
@@ -170,7 +170,7 @@ if [ -d "$HOME/.Ignition/" ]; then
 		exit -1
 	fi
 
-	cd $HOME/.Ignition/  
+	cd $HOME/.Brewhaust/  
 	rm -rf smsgStore
 	rm -rf smsgDB
 	rm -f *.log
@@ -184,5 +184,5 @@ if [ -d "$HOME/.Ignition/" ]; then
 fi
 
 # Done
-echo -e "\n${GREEN}Upgrade Complete - You can now run ignitiond or fill out the config file in ~/Ignition${NC}"
+echo -e "\n${GREEN}Upgrade Complete - You can now run brewhaustd or fill out the config file in ~/Brewhaust${NC}"
 

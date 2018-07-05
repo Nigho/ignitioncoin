@@ -132,7 +132,7 @@ ifeq (${USE_WALLET}, 1)
         obj/walletdb.o
 endif
 
-all: Ignitiond.exe
+all: Brewhaustd.exe
 
 LIBS += $(CURDIR)/leveldb/libleveldb.a $(CURDIR)/leveldb/libmemenv.a
 DEFS += -I"$(CURDIR)/leveldb/include"
@@ -151,13 +151,13 @@ obj/neoscrypt.o: neoscrypt.c
 obj/neoscrypt_asm.o: neoscrypt_asm.S
 	$(CC) -c -DSHA256 -DASM -DOPT -o $@ $<
 
-Ignitiond.exe: $(OBJS:obj/%=obj/%)
+Brewhaustd.exe: $(OBJS:obj/%=obj/%)
 	$(CXX) $(CFLAGS) $(LDFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS) -lshlwapi
-	$(STRIP) Ignitiond.exe
+	$(STRIP) Brewhaustd.exe
 
 clean:
 	-rm -f obj/*.o
-	-rm -f Ignitiond.exe
+	-rm -f Brewhaustd.exe
 	-rm -f obj/build.h
 	cd leveldb && TARGET_OS=OS_WINDOWS_CROSSCOMPILE $(MAKE) clean && cd ..
 

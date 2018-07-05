@@ -1,9 +1,9 @@
-Building Ignition
+Building Brewhaust
 
-See doc/readme-qt.rst for instructions on building Ignition QT,
+See doc/readme-qt.rst for instructions on building Brewhaust QT,
 the intended-for-end-users, nice-graphical-interface, reference
-implementation of Ignition.
+implementation of Brewhaust.
 
-See doc/build-*.txt for instructions on building Ignitiond,
+See doc/build-*.txt for instructions on building Brewhaustd,
 the intended-for-services, no-graphical-interface, reference
-implementation of Ignition.
+implementation of Brewhaust.
