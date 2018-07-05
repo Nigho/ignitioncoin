@@ -1732,7 +1732,7 @@ Les montants inférieurs à  0.546 fois les frais minimum de relais apparaissent
         <location line="+86"/>
         <location line="+32"/>
         <source>0.00 IC</source>
-        <translation>123.456 BRE {0.00 ?}</translation>
+        <translation>123.456 BRU {0.00 ?}</translation>
     </message>
     <message>
         <location line="-191"/>

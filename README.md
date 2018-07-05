@@ -24,7 +24,7 @@ White Paper: https://brewhaustcoin.org/wp-content/uploads/2018/01/Brewhaust-Coin
 
 CoinMarketCap: https://coinmarketcap.com/currencies/brewhaust/
 
-Exchanges BRE is available on (as of 5/30/2018): Cryptopia, CoinExchange, CryptoBridge, BiteBTC - Coming Soon: CryptalDash Exchange
+Exchanges BRU is available on (as of 5/30/2018): Cryptopia, CoinExchange, CryptoBridge, BiteBTC - Coming Soon: CryptalDash Exchange
 
 For compiling on different architectures, see the docs/build-*os* documents. Otherwise, view releases page for windows qt-wallets.
 

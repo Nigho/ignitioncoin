@@ -1736,7 +1736,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <location line="+86"/>
         <location line="+32"/>
         <source>0.00 IC</source>
-        <translation>123.456 BRE {0.00 ?}</translation>
+        <translation>123.456 BRU {0.00 ?}</translation>
     </message>
     <message>
         <location line="-191"/>
