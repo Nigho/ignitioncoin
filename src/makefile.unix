@@ -104,7 +104,6 @@ OBJS= \
     obj/hash.o \
     obj/noui.o \
     obj/kernel.o \
-    obj/pbkdf2.o \
     obj/chainparams.o \
     obj/stealth.o \
     obj/activemasternode.o \
@@ -133,8 +132,6 @@ OBJS= \
     obj/crypto/keccak.o \
     obj/crypto/echo.o \
     obj/crypto/skein.o \
-    obj/crypto/common.o \
-    obj/crypto/hashblock.o \
     obj/smessage.o
 
 ifeq (${USE_WALLET}, 1)
