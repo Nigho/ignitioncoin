@@ -1076,13 +1076,13 @@ void PrintExceptionContinue(std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Brewhaust
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Brewhaust
-    // Mac: ~/Library/Application Support/Brewhaust
-    // Unix: ~/.Brewhaust
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\brewhaust
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\brewhaust
+    // Mac: ~/Library/Application Support/brewhaust
+    // Unix: ~/.brewhaust
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Brewhaust";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "brewhaust";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -1094,10 +1094,10 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     fs::create_directory(pathRet);
-    return pathRet / "Brewhaust";
+    return pathRet / "brewhaust";
 #else
     // Unix
-    return pathRet / ".Brewhaust";
+    return pathRet / ".brewhaust";
 #endif
 #endif
 }
@@ -1146,7 +1146,7 @@ void ClearDatadirCache()
 
 boost::filesystem::path GetConfigFile()
 {
-    boost::filesystem::path pathConfigFile(GetArg("-conf", "Brewhaust.conf"));
+    boost::filesystem::path pathConfigFile(GetArg("-conf", "brewhaust.conf"));
     if (!pathConfigFile.is_complete()) pathConfigFile = GetDataDir(false) / pathConfigFile;
     return pathConfigFile;
 }
