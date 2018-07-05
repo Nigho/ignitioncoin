@@ -98,8 +98,6 @@ OBJS= \
     obj/rpcsmessage.o \
     obj/script.o \
     obj/scrypt.o \
-    obj/neoscrypt.o \
-    obj/neoscrypt_asm.o \
     obj/sync.o \
     obj/txmempool.o \
     obj/util.o \
@@ -125,6 +123,18 @@ OBJS= \
     obj/crypto/sha1.o \
     obj/crypto/sha256.o \
     obj/crypto/sha512.o \
+    obj/crypto/scrypt.o \
+    obj/crypto/ripemd160.o \
+    obj/crypto/aes_helper.o \
+    obj/crypto/blake.o \
+    obj/crypto/bmw.o \
+    obj/crypto/groestl.o \
+    obj/crypto/jh.o \
+    obj/crypto/keccak.o \
+    obj/crypto/echo.o \
+    obj/crypto/skein.o \
+    obj/crypto/common.o \
+    obj/crypto/hashblock.o \
     obj/smessage.o
 
 ifeq (${USE_WALLET}, 1)
@@ -160,12 +170,6 @@ obj/txdb-leveldb.o: leveldb/libleveldb.a
 
 # auto-generated dependencies:
 -include obj/*.P
-
-obj/neoscrypt.o: neoscrypt.c
-	$(CC) $(CFLAGS) -DSHA256 -DASM -DOPT -c -o $@ $^
-
-obj/neoscrypt_asm.o: neoscrypt_asm.S
-	$(CC) -c -DSHA256 -DASM -DOPT -o $@ $^
 
 obj/%.o: %.cpp
 	$(CXX) -c $(xCXXFLAGS) -MMD -MF $(@:%.o=%.d) -o $@ $<

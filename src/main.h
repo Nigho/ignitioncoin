@@ -12,7 +12,7 @@
 #include "net.h"
 #include "script.h"
 
-#include "neoscrypt.h"
+#include "crypto/hashblock.h"
 
 #include <list>
 
@@ -735,25 +735,11 @@ public:
 
     uint256 GetHash() const
     {
-        if (nVersion > 6)
-            return Hash(BEGIN(nVersion), END(nNonce));
-        else
-            return GetPoWHash();
+        return Tribus(BEGIN(nVersion), END(nNonce));
     }
 
     uint256 GetPoWHash() const {
-        uint256 hashPoW;
-        uint profile = 0x0;
-
-        /* All these blocks must be v2+ with valid nHeight */
-        if(GetBlockHeight() < GetForkHeightOne())
-          profile = 0x3;
-
-        profile |= nNeoScryptOptions;
-
-        neoscrypt((uchar *) &nVersion, (uchar *) &hashPoW, profile);
-
-        return(hashPoW);
+        return Tribus(BEGIN(nVersion), END(nNonce));
     }
 
     /* Extracts block height from v2+ coin base;
