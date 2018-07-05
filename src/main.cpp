@@ -1384,38 +1384,26 @@ int64_t GetProofOfWorkReward(int nHeight, int64_t nFees)
     if(TestNet()) return 1000 * COIN;
     //////////////////////////////////
 
-    int64_t nSubsidy = 1 * COIN;
-	  if (nHeight < 2)
+    int64_t nSubsidy = 10 * COIN;
+	   if (nHeight < 2)
     {
     	nSubsidy = 0 * COIN;
     }
     else if(nHeight == 2)
     {
-      nSubsidy = 100000 * COIN;
+      nSubsidy = 300000 * COIN; // BREWHAUST PREMINE 300000 BRU
     }
-    else if(nHeight < 200) // live test before launch = 198 coin
+    else if(nHeight < 1001)
     {
-      nSubsidy = 1 * COIN;
+      nSubsidy = 2 * COIN;
     }
-    else if(nHeight < 262800) // 1st year aproximatly = (262800 - 200 )*4 =  892,840 coins + 100198 = total 993,038 coins
+    else if(nHeight < 100001)
     {
-      nSubsidy = 3.4 * COIN;
+      nSubsidy = 15 * COIN;
     }
-    else if(nHeight < 1314000) // 5th year aproximatly = (1314000 - 262800)* 0.95 = 998,640 coins
+    else if(nHeight < 290001)
     {
-      nSubsidy = 0.95 * COIN;
-    }
-    else if(nHeight < 2628000) // 10th year aproximatly = (2628000 - 1314000)* 0.75 = 985,500 coins
-    {
-      nSubsidy = 0.75 * COIN;
-    }
-    else if(nHeight < 5256000) // 20th year aproximatly = (5256000 - 2628000)* 0.4 = 1,051,200 coins
-    {
-      nSubsidy = 0.4 * COIN;
-    }
-    else if(nHeight < 13140000) // 50th year aproximatly = (13140000 - 5256000)* 0.12 = 946,080 coins
-    {
-      nSubsidy = 0.12 * COIN;
+      nSubsidy = 20 * COIN;
     }
 
     return nSubsidy + nFees;
@@ -1430,31 +1418,20 @@ int64_t GetProofOfStakeReward(int nHeight, int64_t nCoinAge, int64_t nFees)
     if(TestNet()) return 2000 * COIN;
     //////////////////////////////////
 
+    int64_t nReward = GetProofOfWorkReward(int nHeight, int64_t nFees);
     int64_t nSubsidy = STATIC_POS_REWARD;
 
-    if(nHeight < 200) // live test before launch = 198 coin
+    if(nHeight < 100001)
     {
-      nSubsidy = 1 * COIN;
+      nSubsidy = 0 * COIN;
     }
-    else if(nHeight < 262800) // 1st year aproximatly = (262800 - 200 )*4 =  892,840 coins + 100198 = total 993,038 coins
+    else if(nHeight < 290001)
     {
-      nSubsidy = 3.4 * COIN;
+      nSubsidy = (nReward * (2/20)); // removed * COIN, since it's already applied inside GetProofOfWorkReward()
     }
-    else if(nHeight < 1314000) // 5th year aproximatly = (1314000 - 262800)* 0.95 = 998,640 coins
+    else
     {
-      nSubsidy = 0.95 * COIN;
-    }
-    else if(nHeight < 2628000) // 10th year aproximatly = (2628000 - 1314000)* 0.75 = 985,500 coins
-    {
-      nSubsidy = 0.75 * COIN;
-    }
-    else if(nHeight < 5256000) // 20th year aproximatly = (5256000 - 2628000)* 0.4 = 1,051,200 coins
-    {
-      nSubsidy = 0.4 * COIN;
-    }
-    else if(nHeight < 13140000) // 50th year aproximatly = (13140000 - 5256000)* 0.12 = 946,080 coins
-    {
-      nSubsidy = 0.12 * COIN;
+      nSubsidy = (nReward * (1/10));
     }
 
     return nSubsidy + nFees;
@@ -4859,10 +4836,20 @@ bool SendMessages(CNode* pto, bool fSendTrickle)
 
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue)
 {
-    int64_t ret = blockValue * 1/2; //50%
+    int64_t ret = blockValue * 8/10;
 
-	// if(nHeight>21000)
-  //      ret = blockValue * 4/5; //80%
+	   if(nHeight < 1001)
+    {
+        ret = blockValue * 1/2; //50%
+    }
+    else if(nHeight < 100001)
+    {
+        ret = blockValue * 10/15;
+    }
+    else if(nHeight < 290001)
+    {
+        ret = blockValue * 15/20;
+    }
 
     return ret;
 }
